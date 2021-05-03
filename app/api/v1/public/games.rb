@@ -6,7 +6,7 @@ module V1
       end
 
       get do 
-      Game.all
+        Game.all
       end
     end
   end
