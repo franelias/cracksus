@@ -39,6 +39,7 @@ module V1
         status 200
       end
 
+      desc 'Deletes a game.'
       params do
         requires :id, type: Integer
       end
@@ -51,6 +52,7 @@ module V1
         status 200
       end
 
+      desc 'Retrieves all games.'
       get do
         Game.all
       end
