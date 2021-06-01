@@ -3,6 +3,7 @@ module V1
       class Mount < Grape::API
   
         mount Admin::Games => '/games'
+        mount Admin::Users => '/users'
       end
     end
 end
