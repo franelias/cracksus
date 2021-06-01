@@ -3,7 +3,7 @@ class User < ApplicationRecord
   STATUS = %w[verified active banned].freeze
 
   validates :username, presence: true
-  validates :password, presence: true
+  validates :password_digest, presence: true
   validates :mail, presence: true
   validates :status, inclusion: { in: STATUS }
   validates :role, inclusion: { in: ROLES }

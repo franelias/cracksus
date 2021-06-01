@@ -3,5 +3,6 @@ module V1
 
     mount Public::Mount => '/public'
     mount Admin::Mount => '/admin'
+    mount Users::Mount => '/users'
   end 
 end
