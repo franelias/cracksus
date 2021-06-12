@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   ROLES = %w[user admin].freeze
   STATUS = %w[verified active banned].freeze
 
