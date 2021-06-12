@@ -3,7 +3,7 @@ module V1
       class Mount < Grape::API
   
         mount Users::Register => '/register'
-        mount Users::Login => '/login'
+        mount Users::Session => '/session'
       end
     end
   end
