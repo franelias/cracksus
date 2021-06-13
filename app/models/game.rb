@@ -3,8 +3,8 @@ class Game < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :status, inclusion: { in: STATUS }
-  validates :release_date, presence: false
 
+  validates :release_date, presence: true, unless: :unreleased?
   validates :anti_tamper, presence: true, unless: :unreleased?
   validates :image_url, presence: true, unless: :unreleased?
   validates :store_url, presence: true, unless: :unreleased?
