@@ -20,7 +20,6 @@ class User < ApplicationRecord
 
     event :ban do
       transitions from: :active, to: :banned
-      transitions from: :pending, to: :banned
     end
 
     event :unban do

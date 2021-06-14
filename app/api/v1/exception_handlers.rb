@@ -15,8 +15,13 @@ module V1
         error!({ errors: ["#{e.message.split.third.downcase}.not_found"] }, 404)
       end
 
-      rescue_from CrackwatchApi::Users::Error do |e|
-        error!({ errors: [e.message.to_s] }, 400)
+      rescue_from CrackwatchApi::Error::Authentication do |_e|
+        error!({ errors: ['user.authentication_error'] }, 401)
+      end
+
+      # TODO: enhance error handling
+      rescue_from CrackwatchApi::Error do |e|
+        error!({ errors: [e.message.split.first.to_s] }, 400)
       end
 
       rescue_from :all do |e|

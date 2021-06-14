@@ -8,8 +8,8 @@ module CrackwatchApi
         return if request.path.include? 'register'
 
         @session = request.session
-        @user = User.find(@session[:uid])
-        env[:current_payload] = authenticate!(@session)
+        @user = User.find_by_id(@session[:uid])
+        env[:current_payload] = authenticate_session! unless @user.nil?
       end
 
       def update_session!
@@ -19,7 +19,7 @@ module CrackwatchApi
         Rails.cache.write(key, value, expires_in: expire_time)
       end
 
-      def authenticate!(_session)
+      def authenticate_session!
         unless @request.env['HTTP_USER_AGENT'] == @session[:user_agent] &&
                Time.now.to_i < @session[:expire_time]
 
@@ -32,8 +32,8 @@ module CrackwatchApi
         end
 
         unless @user.nil?
-          raise(CrackwatchApi::Users::Error, 'admin.users.pending') if @user.status == 'pending'
-          raise(CrackwatchApi::Users::Error, 'admin.users.banned') if @user.status == 'banned'
+          raise(CrackwatchApi::Error, 'admin.users.pending') if @user.status == 'pending'
+          raise(CrackwatchApi::Error, 'admin.users.banned') if @user.status == 'banned'
 
           update_session!
 
