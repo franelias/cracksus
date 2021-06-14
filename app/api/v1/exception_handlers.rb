@@ -4,7 +4,7 @@ module V1
 
     included do
       rescue_from Grape::Exceptions::ValidationErrors do |e|
-        error!({ errors: [e.message.split.last] }, 400)
+        error!({ errors: ["#{e.message.split.last}.#{e.message.split.first}"] }, 400)
       end
 
       rescue_from Grape::Exceptions::MethodNotAllowed do |_e|
@@ -13,6 +13,10 @@ module V1
 
       rescue_from ActiveRecord::RecordNotFound do |e|
         error!({ errors: ["#{e.message.split.third.downcase}.not_found"] }, 404)
+      end
+
+      rescue_from CrackwatchApi::Users::Error do |e|
+        error!({ errors: [e.message.to_s] }, 400)
       end
 
       rescue_from :all do |e|

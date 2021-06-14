@@ -5,11 +5,10 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.text :password
       t.string :mail
       t.string :status
-      t.string :role
+      t.string :role, default: 'user'
 
       t.timestamps
     end
     add_reference :users, :games
-
   end
 end
