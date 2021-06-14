@@ -18,7 +18,7 @@ module V1
           return error!({ errors: ['admin.users.wrong_password'] }, 404)
         end
 
-        expire_time = Time.now.to_i + CrackwatchApi::Application.config.session_expire_time
+        expire_time = Time.now.to_i + CrackwatchApi::App.session_expire_time
         session = request.session
         session.merge!(
           'uid': user.id,
