@@ -27,9 +27,9 @@ module V1
           'expire_time': expire_time,
           "user_agent": request.env['HTTP_USER_AGENT']
         )
-        key = key_name(user.id, session.id)
+        # key = key_name(user.id, session.id)
 
-        Rails.cache.fetch(key, expires_in: expire_time) { encrypted_session(session.id) }
+        # Rails.cache.fetch(key, expires_in: expire_time) { encrypted_session(session.id) }
         present user, with: V1::Users::Entities::LoggedUser
         return status 200
       end
@@ -39,9 +39,9 @@ module V1
         user = User.find(request.session[:uid])
         return error!({ errors: ['admin.users.not_found'] }, 404) if user.nil?
 
-        key = key_name(user.id, request.session.id)
+        # key = key_name(user.id, request.session.id)
 
-        Rails.cache.delete(key)
+        # Rails.cache.delete(key)
         request.session.destroy
         status 200
       end

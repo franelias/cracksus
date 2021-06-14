@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :mail, presence: true, uniqueness: true
   validates :role, inclusion: { in: ROLES }
+  has_secure_password
 
   has_many :games
 
