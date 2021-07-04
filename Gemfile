@@ -14,12 +14,13 @@ gem 'puma', '~> 5.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 gem 'grape', '~> 1.5.3'
 gem 'grape-entity', '~> 0.9.0'
 gem 'grape_on_rails_routes', '~> 0.3.2'
 gem 'rubocop', '~> 1.13', require: false
+gem 'jwt'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -28,9 +29,10 @@ gem 'rubocop', '~> 1.13', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'pry', '~> 0.13.1'
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+
+gem 'aasm', '~> 4.11'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
